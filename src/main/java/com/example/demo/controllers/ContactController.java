@@ -20,14 +20,15 @@ public class ContactController {
 
 
     @GetMapping("getAll")
-    public List<Contact> getAll() {
-        return this.contactRepository.findAll();
+    public  ResponseEntity<List<Contact>> getAll() {
+
+        return new ResponseEntity<List<Contact>>(this.contactRepository.findAll(),HttpStatus.OK);
     }
 
    
     @GetMapping("getOne/{id}")
-    public Optional<Contact> getOne(@PathVariable long id) {
-        return this.contactRepository.findById(id);
+    public ResponseEntity<Optional<Contact>> getOne(@PathVariable long id) {
+        return new ResponseEntity<Optional<Contact>>(this.contactRepository.findById(id),HttpStatus.OK);
     }
 
     @PostMapping("/createContact")
